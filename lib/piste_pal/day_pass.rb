@@ -12,8 +12,7 @@ module PistePal
       PistePal::DataServices::GpxDoc.set_instance(file_source)
       @trackpoints = PistePal::DataServices::Trackpoints.call
       @date, @resort = PistePal::DataServices::DateAndResort.call
-      @maximum_speed = PistePal::DataServices::MaximumSpeed.call(trackpoints: @trackpoints)
-      @peak_altitude = PistePal::DataServices::PeakAltitude.call(trackpoint: @trackpoints)
+      @maximum_speed, @peak_altitude = PistePal::DataServices::MaxSpeedAndAltitude.call(trackpoints: @trackpoints)
       puts "Success!"
     end
   end
