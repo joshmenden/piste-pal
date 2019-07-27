@@ -1,2 +1,7 @@
 require "piste_pal/version"
 require "piste_pal/day_pass"
+require "piste_pal/trackpoint"
+require "piste_pal/data_services/gpx_doc"
+require "piste_pal/data_services/extract_trackpoints_from_file"
+require "piste_pal/data_services/extract_date_and_resort"
+require "byebug"

@@ -1,12 +1,5 @@
-require_relative 'trackpoint'
-require_relative 'data_services/gpx_doc'
-require_relative 'data_services/extract_trackpoints_from_file'
-require_relative 'data_services/extract_date_and_resort'
-require 'byebug'
-
 module PistePal
   class DayPass
-
     attr_accessor :resort, :date, :trackpoints
 
     def self.purchase file_source

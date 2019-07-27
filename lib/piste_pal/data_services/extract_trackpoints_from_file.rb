@@ -1,7 +1,4 @@
-require 'open-uri'
 require 'nokogiri'
-require_relative 'gpx_doc'
-require_relative '../trackpoint'
 module PistePal
   module DataServices
     class ExtractTrackpointsFromFile
