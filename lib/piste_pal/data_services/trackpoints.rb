@@ -1,7 +1,7 @@
 require 'nokogiri'
 module PistePal
   module DataServices
-    class ExtractTrackpointsFromFile
+    class Trackpoints
       def self.call
         new().call
       end

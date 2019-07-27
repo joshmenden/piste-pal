@@ -10,8 +10,8 @@ module PistePal
 
     def initialize(file_source:)
       PistePal::DataServices::GpxDoc.set_instance(file_source)
-      @trackpoints = PistePal::DataServices::ExtractTrackpointsFromFile.call
-      @date, @resort = PistePal::DataServices::ExtractDateAndResort.call
+      @trackpoints = PistePal::DataServices::Trackpoints.call
+      @date, @resort = PistePal::DataServices::DateAndResort.call
     end
   end
 end

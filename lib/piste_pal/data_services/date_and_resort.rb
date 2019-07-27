@@ -1,7 +1,8 @@
 require 'nokogiri'
+require 'time'
 module PistePal
   module DataServices
-    class ExtractDateAndResort
+    class DateAndResort
       def self.call
         new().call
       end
