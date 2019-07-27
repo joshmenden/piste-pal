@@ -1,3 +1,2 @@
 require "piste_pal/version"
-
-require "piste_pal/trip"
+require "piste_pal/day_pass"
