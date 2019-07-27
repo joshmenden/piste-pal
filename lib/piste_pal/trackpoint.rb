@@ -1,5 +1,5 @@
 module PistePal
-  class DataPoint
+  class Trackpoint
     attr_accessor :lat, :long, :elevation, :time, :hdop, :vdop, :speed
 
     def initialize(lat: nil, long: nil, elevation: nil, time: nil, hdop: nil, vdop: nil, speed: nil)
