@@ -1,6 +1,10 @@
 require 'open-uri'
-require 'byebug'
 require 'nokogiri'
+require 'daru'
+require_relative 'data_point'
+require 'byebug'
+
+
 module PistePal
   class DayPass
     def self.purchase file_source
