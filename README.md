@@ -37,6 +37,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## TODO
 
 * Allow user to set measurement standard on initialization (methods already support both, default to Imperial measurements as of now)
+* Save trackpoint nodes to object and only extract data when necessary
 
 ## License
 
