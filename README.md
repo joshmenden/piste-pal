@@ -34,6 +34,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/piste_pal.
 
+## TODO
+
+* Allow user to set measurement standard on initialization (methods already support both, default to Imperial measurements as of now)
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
