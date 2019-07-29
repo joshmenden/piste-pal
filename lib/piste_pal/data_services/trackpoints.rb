@@ -19,6 +19,7 @@ module PistePal
       end
 
       def extract_trackpoints
+        # TODO: Maybe we should filter out the outliers using hdop and vdop?
         trackpoints = @doc.xpath("//xmlns:trkpt")
         trackpoints.each do |tp|
           @trackpoints.push(PistePal::Trackpoint.new(**extract_params_from_trackpoint_node(tp)))

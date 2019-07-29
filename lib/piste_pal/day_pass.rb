@@ -24,8 +24,9 @@ module PistePal
       @trackpoints = PistePal::DataServices::Trackpoints.call
       @date, @resort = PistePal::DataServices::DateAndResort.call
       @maximum_speed, @peak_altitude = PistePal::DataServices::MaxSpeedAndAltitude.call(trackpoints: @trackpoints)
+      @runs = PistePal::DataServices::Runs.call(trackpoints: @trackpoints)
       # we need to separate out runs from lift rides
-      @distance = PistePal::DataServices::Distance.call(trackpoints: @trackpoints)
+      # @distance = PistePal::DataServices::Distance.call(trackpoints: @trackpoints)
       byebug
       puts "Success!"
     end
