@@ -1,6 +1,6 @@
 module PistePal
   module DataServices
-    class Runs
+    class RunsAndLifts
 
       MINIMUM_DEVIATION = 5
 
@@ -59,7 +59,7 @@ module PistePal
         # Not a perfect system, but for now let's delete the runs that have bad data
         runs = runs.delete_if {|run| run[:trackpoints].first.elevation < run[:trackpoints].last.elevation}
 
-        [runs, lifts]        
+        [runs.map {|run| run[:trackpoints]}, lifts.map {|lift| lift[:trackpoints]}]        
       end
 
       def aggregate_runs_by_direction
