@@ -7,9 +7,13 @@ module PistePal
       end
 
       def call
-        distance = 0
-        @trackpoints.each do |trackpoints|
-          distance += calculate_distance trackpoints
+        if @trackpoints.first.is_a? Array
+          distance = 0
+          @trackpoints.each do |trackpoints|
+            distance += calculate_distance trackpoints
+          end
+        else
+          distance = calculate_distance @trackpoints
         end
         distance
       end
