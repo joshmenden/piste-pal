@@ -29,26 +29,20 @@ module PistePal
 
         previous_group = nil
 
-        
-        # DEBUG
-        pre_count = 0
-        groupings.each do |group|
-          pre_count += group[:trackpoints].count
-        end
-        puts "\n\nCount: #{pre_count}\n\n"
-        # DEBUG
-
         for i in 1..total_groups_count do
           previous_group = groupings[i - 1] if i == 1
 
           if groupings[i][:trackpoints].count > MINIMUM_DEVIATION
-            if previous_group[:direction] == "ascending"
-              lifts.push(previous_group)
+            if groupings[i][:direction] == previous_group[:direction]
+              previous_group[:trackpoints].concat(groupings[i][:trackpoints])
             else
-              runs.push(previous_group)
+              if previous_group[:direction] == "ascending"
+                lifts.push(previous_group)
+              else
+                runs.push(previous_group)
+              end
+              previous_group = groupings[i]
             end
-
-            previous_group = groupings[i]
           elsif groupings[i][:trackpoints].count <= MINIMUM_DEVIATION
             previous_group[:trackpoints].concat(groupings[i][:trackpoints])
           end
@@ -62,29 +56,10 @@ module PistePal
           end
         end
 
-        # DEBUG
-        runs_count = 0
-        runs.each do |run|
-          runs_count += run[:trackpoints].count
-        end
-        lifts_count = 0
-        lifts.each do |lift|
-          lifts_count += lift[:trackpoints].count
-        end
-        puts "\n\nPost Calc Count: #{runs_count + lifts_count}\n\n"
+        # Not a perfect system, but for now let's delete the runs that have bad data
+        runs = runs.delete_if {|run| run[:trackpoints].first.elevation < run[:trackpoints].last.elevation}
 
-
-        byebug
-        # difference = nil
-        # aggregate_pre = groupings.map {|group| group[:trackpoints]}
-        # agg_lifts = lifts.map {|lift| lift[:trackpoints]}
-        # agg_runs = runs.map {|run| run[:trackpoints]}
-        # difference = aggregate_pre - agg_lifts - agg_runs
-
-        # puts "\n\nDifference: #{difference.map {|a| a.elevation }}"
-
-        return "foo"
-        # DEBUG
+        [runs, lifts]        
       end
 
       def aggregate_runs_by_direction
@@ -127,14 +102,13 @@ module PistePal
           end
 
         end
-
-        groupings.each do |group|
-          puts "\n\nNew Group:\nDirection: #{group[:direction]}\n"
-          group[:trackpoints].each do |point|
-            puts point.elevation
-          end
-        end
-
+        #
+        # groupings.each do |group|
+        #   puts "\n\nNew Group:\nDirection: #{group[:direction]}\n"
+        #   group[:trackpoints].each do |point|
+        #     puts point.elevation
+        #   end
+        # end
         groupings
       end
     end
