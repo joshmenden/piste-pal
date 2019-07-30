@@ -2,6 +2,9 @@ require 'nokogiri'
 module PistePal
   module DataServices
     class Trackpoints
+
+      MINIMUM_ACCEPTABLE_DOP = 10
+
       def self.call
         new().call
       end
@@ -19,10 +22,10 @@ module PistePal
       end
 
       def extract_trackpoints
-        # TODO: Maybe we should filter out the outliers using hdop and vdop?
         trackpoints = @doc.xpath("//xmlns:trkpt")
         trackpoints.each do |tp|
-          @trackpoints.push(PistePal::Trackpoint.new(**extract_params_from_trackpoint_node(tp)))
+          trackpoint = PistePal::Trackpoint.new(**extract_params_from_trackpoint_node(tp))
+          @trackpoints.push(trackpoint) if trackpoint.hdop <= MINIMUM_ACCEPTABLE_DOP && trackpoint.vdop <= MINIMUM_ACCEPTABLE_DOP
         end
       end
 

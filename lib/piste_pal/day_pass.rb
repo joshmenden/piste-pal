@@ -1,7 +1,7 @@
 require "vincenty"
 module PistePal
   class DayPass
-    attr_accessor :resort, :date, :trackpoints, :maximum_speed, :peak_altitude, :vertical, :distance, :tallest_run, :longest_run
+    attr_accessor :resort, :date, :trackpoints, :maximum_speed, :peak_altitude, :vertical, :distance, :tallest_run, :longest_run, :runs, :lifts
 
     def self.purchase file_source
       new(file_source: file_source)
@@ -54,8 +54,7 @@ module PistePal
       @distance = PistePal::DataServices::Distance.call(trackpoints: @runs)
       @vertical = PistePal::DataServices::Vertical.call(trackpoints: @runs)
       @tallest_run, @longest_run = PistePal::DataServices::TallestAndLongestRun.call(runs: @runs)
-      byebug
-      puts "Success!"
+
     end
 
   end
