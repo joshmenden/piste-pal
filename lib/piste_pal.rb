@@ -1,5 +1,6 @@
 require "piste_pal/version"
 require "piste_pal/day_pass"
+require "piste_pal/season_pass"
 require "piste_pal/trackpoint"
 require "piste_pal/data_services/gpx_doc"
 require "piste_pal/data_services/trackpoints"

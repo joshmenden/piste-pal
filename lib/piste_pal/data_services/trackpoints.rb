@@ -16,7 +16,7 @@ module PistePal
 
       private
 
-      def initialize
+      def initialize()
         @doc = PistePal::DataServices::GpxDoc.instance.doc
         @trackpoints = []
       end

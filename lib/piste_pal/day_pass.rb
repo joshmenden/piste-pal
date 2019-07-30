@@ -1,4 +1,3 @@
-require "vincenty"
 module PistePal
   class DayPass
     attr_accessor :resort, :date, :trackpoints, :maximum_speed, :peak_altitude, :vertical, :distance, :tallest_run, :longest_run, :runs, :lifts
@@ -97,6 +96,5 @@ module PistePal
       @vertical = PistePal::DataServices::Vertical.call(trackpoints: @runs)
       @tallest_run, @longest_run = PistePal::DataServices::TallestAndLongestRun.call(runs: @runs)
     end
-
   end
 end
