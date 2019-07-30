@@ -38,7 +38,7 @@ module PistePal
         value = @distance / 1000
         unit = "kilometers"
       elsif system == "imperial"
-        value = @peak_altitude / 1609.344
+        value = @distance / 1609.344
         unit = "miles"
       end
 
