@@ -5,17 +5,17 @@ module PistePal
       # include Singleton
       attr_accessor :doc
 
-      def self.set_instance(file_source)
-        @instance = new(file_source)
+      def self.set_instance(file_content)
+        @instance = new(file_content)
       end
       def self.instance
         @instance || nil
       end
 
       private
-      def initialize file_source
+      def initialize file_content
         # TODO: Support Nokogiri reading from http website instead of file path
-        @doc = Nokogiri::XML(File.open(file_source)) do |config|
+        @doc = Nokogiri::XML(file_content) do |config|
           config.strict.noblanks
         end
       end
