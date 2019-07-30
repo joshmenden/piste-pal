@@ -7,14 +7,40 @@ module PistePal
       new(file_source: file_source)
     end
 
+    # convert mp/h to km/h
     def maximum_speed(system = "imperial")
       return (@maximum_speed * 1.60934) if system == "metric"
       return @maximum_speed if system == "imperial"
     end
 
+    # convert meters to feet
     def peak_altitude(system = "imperial")
       return @peak_altitude if system == "metric"
       return (@peak_altitude * 3.28084) if system == "imperial"
+    end
+
+    # convert meters to km / miles
+    def distance(system = "imperial")
+      return @distance / 1000 if system == "metric"
+      return @distance / 1609.344 if system == "imperial"
+    end
+
+    # convert meters to feet
+    def vertical(system = "imperial")
+      return @vertical if system == "metric"
+      return @vertical * 3.28084 if system == "imperial"
+    end
+
+    # convert meters to feet
+    def tallest_run(system = "imperial")
+      return @tallest_run if system == "metric"
+      return @tallest_run * 3.28084 if system == "imperial"
+    end
+
+    # convert meters to miles
+    def longest_run(system = "imperial")
+      return @longest_run if system == "metric"
+      return @longest_run / 1609.344 if system == "imperial"
     end
 
     private
