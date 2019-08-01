@@ -6,6 +6,11 @@ module PistePal
       new(files: files)
     end
 
+    def days(timestamp_only: false)
+      return @days if !timestamp_only
+      return @days.map {|day| day.date }
+    end
+
     private
 
     def initialize(files:)

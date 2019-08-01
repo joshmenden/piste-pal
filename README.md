@@ -1,8 +1,11 @@
 # PistePal
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/piste_pal`. To experiment with that code, run `bin/console` for an interactive prompt.
+Fill your time off the slopes thinking about them. This gem takes .gpx files from popular activity tracking apps and turns them into fun stats.
 
-TODO: Delete this and the text above, and describe your gem
+The code can be accessed at a high level by "purchasing" either Day Passes or Season Passes, but most of the functionality is modularized to allow you access to the stats you want.
+
+It is tailored for .gpx files exported from the [Slopes](https://getslopes.com/) app for now.
+
 
 ## Installation
 
@@ -22,22 +25,52 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'piste_pal'
 
-## Development
+# "Purchase" your day pass with a single variable of .gpx data
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+gpx_data = File.read('/path/to/gpx/file')
+sundance = PistePal::DayPass.purchase(gpx_data)
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+sundance.resort                         # Sundance Mountain Resort
+sundance.date                           # 2019-03-01 00:00:00 -0700
+sundance.maximum_speed                  # {:value=>30.290415, :unit=>"mph"}
+sundance.peak_altitude                  # {:value=>8261.18916855752, :unit=>"feet"}
+sundance.vertical                       # {:value=>3797.6879430483204, :unit=>"feet"}
+sundance.distance                       # {:value=>4.796952318157319, :unit=>"miles"}
+sundance.tallest_run                    # {:value=>1282.958728718721, :unit=>"feet"}
+sundance.longest_run                    # {:value=>1.9052295991405417, :unit=>"miles"}
+sundance.runs                           # [[@trackpoint1, @trackpoint2, ...], [@trackpoint1, @trackpoint2, ...]]
+sundance.lifts                          # [[@trackpoint1, @trackpoint2, ...], [@trackpoint1, @trackpoint2, ...]]
+
+# Or, purchase a season pass with an array of .gpx data objects
+
+season_data = []
+season_data.push(File.read('/path/to/gpx/file1'))
+season_data.push(File.read('/path/to/gpx/file2'))
+season_data.push(File.read('/path/to/gpx/file3'))
+
+season = PistePal::SeasonPass.purhcase(season_data)
+
+season.days                             # [<PistePal::DayPass>, <PistePal::DayPass>, ...]
+season.days(timestamp_only: true)       # [2019-03-30 00:00:00 -0600, 2019-03-01 00:00:00 -0700, ...]
+season.runs                             # 134
+season.resorts                          # ["Sundance Resort", "Solitude Mountain Resort", "Park City Mountain Resort"]
+season.vertical                         # {:value=>51900.38487275453, :unit=>"feet"}
+season.distance                         # {:value=>52.35386405859661, :unit=>"miles"}
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/piste_pal.
+Bug reports and pull requests are welcome on [GitHub](https://github.com/joshmenden/piste_pal). No PR is too small.
 
-## TODO
+Some things that need cleaning up / fixing:
 
-* Allow user to set measurement standard on initialization (methods already support both, default to Imperial measurements as of now)
-* Save trackpoint nodes to object and only extract data when necessary
+* Should probably write some tests...
+* Cleaner, more comprehensive way to handle different measurement systems (Metric vs. Imperial). I have this half-baked in some places but it could use a lot of improvment.
+* Save trackpoint nodes to object and only extract data when necessary -- that is, only calculate the maximum_velocity when that method is invoked
+* Check compatibility with files exported from other Apps (right now it is mostly tailored towards the "Slopes" app)
 
 ## License
 
