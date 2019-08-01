@@ -28,7 +28,7 @@ Or install it yourself as:
 ```ruby
 require 'piste_pal'
 
-# "Purchase" your day pass with a single variable of .gpx data
+# "Purchase" your day pass with a single .gpx data object
 
 gpx_data = File.read('/path/to/gpx/file')
 sundance = PistePal::DayPass.purchase(gpx_data)
@@ -51,7 +51,7 @@ season_data.push(File.read('/path/to/gpx/file1'))
 season_data.push(File.read('/path/to/gpx/file2'))
 season_data.push(File.read('/path/to/gpx/file3'))
 
-season = PistePal::SeasonPass.purhcase(season_data)
+season = PistePal::SeasonPass.purchase(season_data)
 
 season.days                             # [<PistePal::DayPass>, <PistePal::DayPass>, ...]
 season.days(timestamp_only: true)       # [2019-03-30 00:00:00 -0600, 2019-03-01 00:00:00 -0700, ...]
