@@ -1,5 +1,7 @@
 # PistePal
 
+[![Gem Version](https://badge.fury.io/rb/piste_pal.svg)](https://badge.fury.io/rb/piste_pal)
+
 Fill your time off the slopes thinking about them. This gem takes .gpx files from popular activity tracking apps and turns them into fun stats.
 
 The code can be accessed at a high level by "purchasing" either Day Passes or Season Passes, but most of the functionality is modularized to allow you access to the stats you want.
