@@ -1,6 +1,6 @@
 module PistePal
   class DayPass
-    attr_accessor :resort, :date, :trackpoints, :maximum_speed, :peak_altitude, :vertical, :distance, :tallest_run, :longest_run, :runs, :lifts
+    attr_accessor :resort, :date, :trackpoints, :maximum_speed, :peak_altitude, :vertical, :distance, :tallest_run, :longest_run, :runs, :lifts, :total_hours
 
     def self.purchase file_content
       new(file_content: file_content)
@@ -95,6 +95,13 @@ module PistePal
       @distance = PistePal::DataServices::Distance.call(trackpoints: @runs)
       @vertical = PistePal::DataServices::Vertical.call(trackpoints: @runs)
       @tallest_run, @longest_run = PistePal::DataServices::TallestAndLongestRun.call(runs: @runs)
+      @total_hours = calculate_total_hours
+    end
+
+    def calculate_total_hours
+      first = @trackpoints.first.time
+      last = @trackpoints.last.time
+      (Time.parse(last) - Time.parse(first)) / 3600
     end
   end
 end
