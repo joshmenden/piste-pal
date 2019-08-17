@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     piste_pal (1.0.0)
-      nokogiri (~> 1.10)
+      nokogiri (= 1.10.3)
       rake (~> 10.0)
       vincenty_distance (~> 1.0.0)
 
