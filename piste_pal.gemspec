@@ -25,10 +25,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 2.0"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "byebug", "~> 11.0"
   spec.add_dependency "nokogiri", "1.10.4"
-  spec.add_dependency "rake", "~> 10.0"
+  spec.add_dependency "rake", "~> 13.0"
   spec.add_dependency "vincenty_distance", "~> 1.0.0"
 end
